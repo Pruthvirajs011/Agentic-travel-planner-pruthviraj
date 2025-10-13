@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agentic Travel Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Agentic Travel Planner</h1>
+    <p>Multi-agent itinerary with weather + POIs</p>
+
+    <!-- ===== Plan your trip (Natural language + Form) ===== -->
+    <section class="plan">
+      <h2>Plan your trip</h2>
+
+      <p class="examples">
+        Try:
+        <button class="pill" data-ex="Plan a 3-day trip to Delhi starting 2025-10-12">
+          Plan a 3-day trip to Delhi starting 2025-10-12
+        </button>
+        or
+        <button class="pill" data-ex="Plan a 2 day trip to Hyderabad from tomorrow">
+          Plan a 2 day trip to Hyderabad from tomorrow
+        </button>
+      </p>
+
+      <div class="nl-row">
+        <input id="nlQuery" class="input" type="text"
+               placeholder="e.g., Plan a 3 day trip to Delhi starting 2025-10-12" />
+        <button id="planBtn" class="btn">Plan</button>
+      </div>
+
+      <div class="form-row">
+        <label>City
+          <input id="city" class="input" placeholder="e.g., Delhi" />
+        </label>
+        <label>Days
+          <input id="days" class="input" type="number" min="1" value="2" />
+        </label>
+        <label>Start date
+          <input id="startDate" class="input" type="date" />
+        </label>
+        <label>Interests (comma)
+          <input id="interests" class="input" placeholder="history, food" value="history, food" />
+        </label>
+        <button id="useFormBtn" class="btn">Use form</button>
+      </div>
+
+      <div id="status" class="status"></div>
+    </section>
+
+    <!-- ===== Results ===== -->
+    <section id="results" class="results hidden">
+      <h2>Itinerary</h2>
+      <div class="button-row">
+        <button id="replanBtn" class="btn small">Re-plan (refresh)</button>
+        <button id="replanDistanceBtn" class="btn small">Replan by distance</button>
+        <button id="exportBtn" class="btn small">Export PDF</button>
+      </div>
+
+      <div id="weatherBlock" class="block"></div>
+      <div id="poiBlock" class="block"></div>
+      <div id="itineraryBlock" class="block"></div>
+    </section>
+
+    <footer>
+      <small>Built with ❤️ using Flask + OpenWeather + Geoapify</small>
+    </footer>
+  </main>
+
+  <!-- Boot script: default start date and wire the example pills -->
+  <script>
+    (function () {
+      // Default start date to today and prevent past dates
+      const startDateEl = document.getElementById('startDate');
+      if (startDateEl && !startDateEl.value) {
+        const today = new Date();
+        const iso = today.toISOString().slice(0, 10);
+        startDateEl.value = iso;
+        startDateEl.min = iso;
+      }
+
+      // Example pills auto-fill the NL input
+      const nlInput = document.getElementById('nlQuery');
+      const planBtn = document.getElementById('planBtn');
+      if (planBtn) {
+        planBtn.addEventListener('click', () => {
+          const query = nlInput.value.trim();
+          if (!query) {
+            alert('Please enter a travel query');
+            return;
+          }
+          window.dispatchEvent(new CustomEvent('plan-trip', { detail: { query } }));
+        });
+      }
+
+      const pills = document.querySelectorAll('.pill');
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          nlInput.value = pill.getAttribute('data-ex');
+        });
+      });
+    })();
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

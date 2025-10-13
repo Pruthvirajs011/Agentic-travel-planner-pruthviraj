@@ -1,0 +1,193 @@
+/* 🌍 AGENTIC TRAVEL PLANNER — Perfect Code Snapshot */
+
+/* ===== Base Styling ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  color: #f4f4f4;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+/* ===== Container ===== */
+.container {
+  background: #101419;
+  padding: 2rem 2.5rem;
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+  width: 90%;
+  max-width: 900px;
+}
+
+/* ===== Headings ===== */
+h1 {
+  font-size: 2.3rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+h2 {
+  color: #00bcd4;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+/* ===== Paragraphs and Text ===== */
+p {
+  color: #ccc;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* ===== Input and Buttons ===== */
+.input {
+  background: #1a1f25;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  color: #eee;
+  width: 100%;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #00bcd4;
+}
+
+.btn {
+  background: #00bcd4;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #0193a4;
+}
+
+.btn.small {
+  font-size: 0.85rem;
+  padding: 6px 10px;
+}
+
+/* ===== Example Pills ===== */
+.pill {
+  background: #2a2f36;
+  color: #ccc;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 6px 12px;
+  margin: 0 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pill:hover {
+  background: #00bcd4;
+  color: #fff;
+  border-color: #00bcd4;
+}
+
+/* ===== Form Layout ===== */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: flex-end;
+}
+
+.form-row label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* ===== Status and Sections ===== */
+.status {
+  margin-top: 1rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.results {
+  margin-top: 2rem;
+}
+
+.results.hidden {
+  display: none;
+}
+
+.block {
+  background: #151a21;
+  border: 1px solid #2c3139;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 1rem;
+  color: #ccc;
+}
+
+/* ===== Button Row ===== */
+.button-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+/* ===== Table Styling (for itinerary, weather, etc.) ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: center;
+  color: #eee;
+}
+
+th {
+  background: #1c222a;
+  color: #00bcd4;
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  color: #777;
+  font-size: 0.85rem;
+  margin-top: 2rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.2rem;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+}

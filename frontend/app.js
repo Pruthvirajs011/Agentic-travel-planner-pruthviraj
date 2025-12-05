@@ -1,9 +1,9 @@
 // frontend/app.js
 
-// ======= CONFIG =======
-const BACKEND_BASE_URL = "http://127.0.0.1:5001";
-
-// ======= DOM =======
+// ======= CONFIG =======// You can override with ?backend=http://127.0.0.1:5001&prefix=
+const qs = new URLSearchParams(location.search);
+const BACKEND_BASE_URL = qs.get("backend") || "http://127.0.0.1:5001"; // default to 5001 (the one that worked)
+const BACKEND_PREFIX   = qs.get("prefix")  || "";
 let nlQuery = document.getElementById("nlQuery");
 const cityInput = document.getElementById("city");
 const daysInput = document.getElementById("days");
@@ -882,8 +882,10 @@ async function planTrip(payload) {
   setStatus("Planning your trip…");
   show(results, false);
   try {
-    const { status, data } = await postJSON(`${BACKEND_BASE_URL}/plan_trip`, payload);
-    if (status >= 200 && status < 300) {
+// BEFORE
+const { status, data } = await postJSON(`${BACKEND_BASE_URL}/plan_trip`, payload);
+// AFTER
+const { status, data } = await postJSON(`${BACKEND_BASE_URL}${BACKEND_PREFIX}/plan_trip`, payload);    if (status >= 200 && status < 300) {
       setStatus("Done!");
       ensureActionButtons();
       showResults(data);
